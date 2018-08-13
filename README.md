@@ -24,7 +24,7 @@ Then plot the ROC curve and confusion matrix for your test sets.
 
 
 ```python
-df = pd.read_csv('creditcard.csv')
+df = pd.read_csv('creditcard.csv.gz', compression='gzip') #Here we load a compressed csv file.
 df.head()
 ```
 
@@ -49,6 +49,7 @@ df.head()
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>Unnamed: 0</th>
       <th>Time</th>
       <th>V1</th>
       <th>V2</th>
@@ -58,7 +59,6 @@ df.head()
       <th>V6</th>
       <th>V7</th>
       <th>V8</th>
-      <th>V9</th>
       <th>...</th>
       <th>V21</th>
       <th>V22</th>
@@ -75,6 +75,7 @@ df.head()
   <tbody>
     <tr>
       <th>0</th>
+      <td>0</td>
       <td>0.0</td>
       <td>-1.359807</td>
       <td>-0.072781</td>
@@ -84,7 +85,6 @@ df.head()
       <td>0.462388</td>
       <td>0.239599</td>
       <td>0.098698</td>
-      <td>0.363787</td>
       <td>...</td>
       <td>-0.018307</td>
       <td>0.277838</td>
@@ -99,6 +99,7 @@ df.head()
     </tr>
     <tr>
       <th>1</th>
+      <td>1</td>
       <td>0.0</td>
       <td>1.191857</td>
       <td>0.266151</td>
@@ -108,7 +109,6 @@ df.head()
       <td>-0.082361</td>
       <td>-0.078803</td>
       <td>0.085102</td>
-      <td>-0.255425</td>
       <td>...</td>
       <td>-0.225775</td>
       <td>-0.638672</td>
@@ -123,6 +123,7 @@ df.head()
     </tr>
     <tr>
       <th>2</th>
+      <td>2</td>
       <td>1.0</td>
       <td>-1.358354</td>
       <td>-1.340163</td>
@@ -132,7 +133,6 @@ df.head()
       <td>1.800499</td>
       <td>0.791461</td>
       <td>0.247676</td>
-      <td>-1.514654</td>
       <td>...</td>
       <td>0.247998</td>
       <td>0.771679</td>
@@ -147,6 +147,7 @@ df.head()
     </tr>
     <tr>
       <th>3</th>
+      <td>3</td>
       <td>1.0</td>
       <td>-0.966272</td>
       <td>-0.185226</td>
@@ -156,7 +157,6 @@ df.head()
       <td>1.247203</td>
       <td>0.237609</td>
       <td>0.377436</td>
-      <td>-1.387024</td>
       <td>...</td>
       <td>-0.108300</td>
       <td>0.005274</td>
@@ -171,6 +171,7 @@ df.head()
     </tr>
     <tr>
       <th>4</th>
+      <td>4</td>
       <td>2.0</td>
       <td>-1.158233</td>
       <td>0.877737</td>
@@ -180,7 +181,6 @@ df.head()
       <td>0.095921</td>
       <td>0.592941</td>
       <td>-0.270533</td>
-      <td>0.817739</td>
       <td>...</td>
       <td>-0.009431</td>
       <td>0.798278</td>
@@ -195,7 +195,7 @@ df.head()
     </tr>
   </tbody>
 </table>
-<p>5 rows × 31 columns</p>
+<p>5 rows × 32 columns</p>
 </div>
 
 
@@ -254,7 +254,7 @@ plt.legend(loc="lower right")
 plt.show()
 ```
 
-    AUC: 0.8841412031175262
+    AUC: 0.9223704078857282
 
 
 
@@ -303,8 +303,8 @@ plot_confusion_matrix(cnf_matrix, classes=[0,1])
 ```
 
     Confusion matrix, without normalization
-    [[71026    53]
-     [   56    67]]
+    [[71025    67]
+     [   57    53]]
 
 
 
@@ -357,32 +357,32 @@ plt.show()
               fit_intercept=False, intercept_scaling=1, max_iter=100,
               multi_class='ovr', n_jobs=1, penalty='l2', random_state=None,
               solver='liblinear', tol=0.0001, verbose=0, warm_start=False)
-    AUC for 0.001: 0.8397641690817177
+    AUC for 0.001: 0.8843361657428511
     LogisticRegression(C=0.01, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 0.01: 0.8817811354023053
+    AUC for 0.01: 0.8815826557121822
     LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 0.1: 0.8839373305947122
+    AUC for 0.1: 0.8816152471793142
     LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 1: 0.8841412031175262
+    AUC for 1: 0.9246746715061478
     LogisticRegression(C=10, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 10: 0.8841610159158905
+    AUC for 10: 0.9259463249017567
     LogisticRegression(C=100, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 100: 0.8841631261547696
+    AUC for 100: 0.9314983633925138
 
 
 
@@ -396,8 +396,8 @@ plot_confusion_matrix(cnf_matrix, classes=[0,1])
 ```
 
     Confusion matrix, without normalization
-    [[71026    53]
-     [   56    67]]
+    [[71034    48]
+     [   48    72]]
 
 
 
@@ -465,47 +465,47 @@ plt.show()
               fit_intercept=False, intercept_scaling=1, max_iter=100,
               multi_class='ovr', n_jobs=1, penalty='l2', random_state=None,
               solver='liblinear', tol=0.0001, verbose=0, warm_start=False)
-    AUC for 0.005: 0.9631029421419395
+    AUC for 0.005: 0.9743261303846261
     LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 0.1: 0.9630792605722969
+    AUC for 0.1: 0.974237734822693
     LogisticRegression(C=0.2, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 0.2: 0.9625942573365972
+    AUC for 0.2: 0.9656378079776408
     LogisticRegression(C=0.5, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 0.5: 0.962594609043077
+    AUC for 0.5: 0.9741281196364762
     LogisticRegression(C=0.8, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 0.8: 0.9625947262785703
+    AUC for 0.8: 0.9639382450315598
     LogisticRegression(C=1, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 1: 0.9625948435140637
+    AUC for 1: 0.9743316404528104
     LogisticRegression(C=1.25, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 1.25: 0.9630792605722968
+    AUC for 1.25: 0.9743689213396733
     LogisticRegression(C=1.5, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 1.5: 0.9630792605722969
+    AUC for 1.5: 0.9640529013439877
     LogisticRegression(C=2, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 2: 0.9625949607495569
+    AUC for 2: 0.9741676279977115
 
 
 
@@ -519,8 +519,8 @@ plot_confusion_matrix(cnf_matrix, classes=[0,1])
 ```
 
     Confusion matrix, without normalization
-    [[69659    14]
-     [ 1423   106]]
+    [[69956    14]
+     [ 1126   106]]
 
 
 
@@ -585,22 +585,46 @@ plt.show()
               fit_intercept=False, intercept_scaling=1, max_iter=100,
               multi_class='ovr', n_jobs=1, penalty='l2', random_state=None,
               solver='liblinear', tol=0.0001, verbose=0, warm_start=False)
-    AUC for 0.005: 0.9894236220714301
+    AUC for 0.005: 0.9921032517967779
     LogisticRegression(C=0.1, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 0.1: 0.9894256358577662
+    AUC for 0.1: 0.9920412343428568
     LogisticRegression(C=0.2, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
-    AUC for 0.2: 0.9894256893001007
+    AUC for 0.2: 0.9884413171276456
     LogisticRegression(C=0.3, class_weight=None, dual=False, fit_intercept=False,
               intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
               penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
               verbose=0, warm_start=False)
+    AUC for 0.3: 0.9881614144844093
+    LogisticRegression(C=0.5, class_weight=None, dual=False, fit_intercept=False,
+              intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
+              penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
+              verbose=0, warm_start=False)
+    AUC for 0.5: 0.9883970844908929
+    LogisticRegression(C=0.6, class_weight=None, dual=False, fit_intercept=False,
+              intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
+              penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
+              verbose=0, warm_start=False)
+    AUC for 0.6: 0.9884451297433725
+    LogisticRegression(C=0.7, class_weight=None, dual=False, fit_intercept=False,
+              intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
+              penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
+              verbose=0, warm_start=False)
+    AUC for 0.7: 0.9919470287688272
+    LogisticRegression(C=0.8, class_weight=None, dual=False, fit_intercept=False,
+              intercept_scaling=1, max_iter=100, multi_class='ovr', n_jobs=1,
+              penalty='l2', random_state=None, solver='liblinear', tol=0.0001,
+              verbose=0, warm_start=False)
+    AUC for 0.8: 0.9884453055092727
 
 
-#Your answer here  
+
+![png](index_files/index_17_1.png)
+
+
 This ROC curve is misleading because the test set was also manipulated using SMOTE. This produces results that will not be comparable to future cases as we have synthetically created test cases. SMOTE should only be applied to training sets, and then from there an accuracte gauge can be made on the model's performance by using a raw test sample that has not been oversampled or undersampled.
