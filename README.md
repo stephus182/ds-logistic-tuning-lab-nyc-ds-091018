@@ -117,4 +117,4 @@ print(pd.Series(y_train_resampled).value_counts()) #Preview synthetic sample cla
 ```
 
 ## Analysis
-Describe what is misleading about the AUC score and ROC curves produced by this code [Teacher: only give code once students are done with previous questions]
+Describe what is misleading about the AUC score and ROC curves produced by this code.
